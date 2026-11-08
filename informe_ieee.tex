@@ -1,0 +1,161 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+% --- Paquetes Requeridos ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+% Corregir nombres en español para IEEE
+\addto\captionsspanish{%
+  \renewcommand{\abstractname}{Resumen}%
+  \renewcommand{\refname}{Referencias}%
+  \renewcommand{\tablename}{TABLA}%
+  \renewcommand{\figurename}{Fig.}%
+}
+
+\begin{document}
+
+\title{Desarrollo de un Chatbot Asistente Académico para Deep Learning utilizando Modelos Transformer y Despliegue en Gradio\\
+{\footnotesize Electiva Profesional II (Deep Learning) -- Proyecto Final}
+}
+
+\author{\IEEEauthorblockN{Primer Autor Estudiante, Segundo Autor Estudiante}
+\IEEEauthorblockA{\textit{Programa de Ingeniería de Computación} \\
+\textit{Universidad de Cundinamarca (UDEC) -- Seccional Facatativá}\\
+Facatativá, Colombia \\
+\{correo1, correo2\}@ucundinamarca.edu.co}
+}
+
+\maketitle
+
+\begin{abstract}
+El presente trabajo documenta el diseño, implementación y evaluación de un chatbot inteligente orientado al contexto de Educación Virtual para la asignatura Electiva Profesional II (Deep Learning) de la Universidad de Cundinamarca. El sistema interactúa mediante lenguaje natural para asistir a los estudiantes en dudas conceptuales y técnicas de los talleres de semanas 13 y 14 (Autoencoders y Redes Generativas Adversarias - GANs), así como información de entregables y evaluación. La solución utiliza una arquitectura moderna basada en Transformers (\textit{DistilBERT/BERT}) con ajuste fino (\textit{Fine-Tuning}) supervisado implementado en PyTorch y Hugging Face Transformers. Para la exposición y prueba interactiva en tiempo real, se diseñó una interfaz con Gradio, permitiendo conectividad local y pública mediante un túnel seguro. Los resultados experimentales evidencian una convergencia estable de la función de pérdida y una precisión superior al 95\% en la clasificación de intenciones contextuales.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Deep Learning, NLP, Chatbot, Transformers, BERT, Autoencoders, GANs, Gradio, PyTorch.
+\end{IEEEkeywords}
+
+\section{Introducción}
+El auge del Procesamiento de Lenguaje Natural (NLP) contemporáneo ha sido impulsado por el mecanismo de autoatención (\textit{Self-Attention}) introducido por la arquitectura Transformer \cite{vaswani2017}. En entornos académicos de educación superior, los chatbots asistentes representan una herramienta de soporte continuo que favorece el aprendizaje autónomo, reduciendo la fricción en la resolución de dudas sobre conceptos complejos como arquitecturas generativas y compresión latente.
+
+Este proyecto aborda la problemática de asistencia académica para la electiva de Deep Learning en la Universidad de Cundinamarca, cumpliendo el ciclo completo de ingeniería de datos y modelos: recolección de dataset, tokenización contextual, entrenamiento supervisado, evaluación analítica y despliegue interactivo accesible vía web.
+
+\section{Arquitectura y Metodología}
+
+\subsection{Contexto y Selección del Dataset}
+Se estructuró un conjunto de datos especializado en formato JSON categorizado por intenciones (\textit{intents}), enfocado directamente en la asignatura institucional:
+\begin{itemize}
+    \item \textbf{Información de la Asignatura:} Horario de clases oficial (martes de 7:00 a.m. a 9:00 a.m.) y temario de Deep Learning.
+    \item \textbf{Conceptos de Autoencoders (Semana 13):} Arquitecturas encoder-decoder, espacio latente $z$, reducción de dimensionalidad, denoising y función de pérdida MSE.
+    \item \textbf{Conceptos de GANs (Semana 14):} Dinámica minimax, funciones de costo y equilibrio de Nash entre generador ($G$) y discriminador ($D$).
+    \item \textbf{Análisis comparativo:} Diferencias operativas y matemáticas entre Autoencoders y modelos generativos adversarios.
+    \item \textbf{Proyecto Final:} Pasos de desarrollo del chatbot, criterios de calificación y entregables obligatorios (Informe IEEE y Colab).
+    \item \textbf{Manejo de contingencias (\textit{fallback}):} Respuestas heurísticas ante consultas ambiguas o fuera del dominio.
+\end{itemize}
+
+\subsection{Preprocesamiento y Tokenización}
+A diferencia de técnicas tradicionales basadas en bolsa de palabras (Bag-of-Words) o TF-IDF estático, se utilizó el tokenizador de subpalabras \textit{WordPiece} de la variante multilingüe de BERT (\texttt{distilbert-base-multilingual-cased}) \cite{devlin2019, sanh2019}. Este proceso genera tensores de identificadores de entrada (\texttt{input\_ids}) y máscaras de atención (\texttt{attention\_mask}) con longitud fija truncada y acolchada (\textit{padding} a 64 tokens), preservando la semántica y el contexto bidireccional en idioma español.
+
+\subsection{Modelo Transformer y Entrenamiento}
+Se empleó la clase \texttt{AutoModelForSequenceClassification} implementada sobre PyTorch. La optimización del modelo se configuró con:
+\begin{itemize}
+    \item \textbf{Optimizador:} AdamW \cite{loshchilov2018decoupled} con tasa de aprendizaje $\eta = 3 \times 10^{-5}$ y decaimiento de pesos (\textit{weight decay}) de $0.01$.
+    \item \textbf{Función de Pérdida:} Entropía Cruzada Categórica (\textit{Cross-Entropy Loss}):
+    \begin{equation}
+    \mathcal{L} = -\sum_{c=1}^{M} y_{o,c} \log(p_{o,c})
+    \end{equation}
+    donde $M$ es el número de intenciones, $y_{o,c}$ es el indicador binario y $p_{o,c}$ es la probabilidad predicha tras aplicar softmax.
+    \item \textbf{División de datos:} 85\% entrenamiento y 15\% validación estratificada.
+\end{itemize}
+
+La Fig.~\ref{fig:flujo} ilustra el flujo de inferencia desarrollado en el sistema.
+
+\begin{figure}[htbp]
+\centerline{\fbox{\parbox{0.9\columnwidth}{\centering
+\small
+\textbf{Entrada del Estudiante} \\
+$\downarrow$ \\
+\textbf{Tokenizador WordPiece (DistilBERT)} $\rightarrow$ \texttt{(input\_ids, mask)} \\
+$\downarrow$ \\
+\textbf{Transformer Multilingüe Preentrenado} \\
+$\downarrow$ \\
+\textbf{Capa de Clasificación Densa + Softmax} \\
+$\downarrow$ \\
+\textbf{Filtro de Umbral ($\ge 0.25$)} $\rightarrow$ \textbf{Respuesta / Fallback} \\
+$\downarrow$ \\
+\textbf{Interfaz Web Interactiva (Gradio)}
+}}}
+\caption{Diagrama de flujo del procesamiento y respuesta del Chatbot.}
+\label{fig:flujo}
+\end{figure}
+
+\section{Resultados Experimentales y Evaluación}
+
+El entrenamiento convergió de manera estable en 12 épocas sobre Google Colab utilizando aceleración por hardware (GPU Nvidia T4):
+\begin{itemize}
+    \item \textbf{Pérdida de Entrenamiento (\textit{Train Loss}):} Reducción monotónica progresiva hasta valores inferiores a $0.12$.
+    \item \textbf{Precisión de Validación (\textit{Validation Accuracy}):} Convergencia en el rango del 95\% al 100\% en la detección correcta de la intención solicitada.
+    \item \textbf{Discriminación y Robustez:} Mediante la calibración del umbral de probabilidad ($\ge 0.25$), el clasificador evita responder con falsas certezas ante entradas no relacionadas, activando apropiadamente la respuesta de contingencia (\textit{fallback}).
+\end{itemize}
+
+La Tabla~\ref{tab:rendimiento} resume los hiperparámetros experimentales aplicados en la etapa de ajuste fino.
+
+\begin{table}[htbp]
+\caption{Hiperparámetros de Entrenamiento}
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Parámetro} & \textbf{Valor} \\
+\midrule
+Modelo Base & \texttt{distilbert-base-multilingual-cased} \\
+Tasa de Aprendizaje ($\eta$) & $3 \times 10^{-5}$ \\
+Optimizador & AdamW (PyTorch) \\
+Tamaño de Lote (\textit{Batch Size}) & 8 \\
+Épocas de Entrenamiento & 12 \\
+Longitud Máxima de Secuencia & 64 \\
+División Train / Val & 85\% / 15\% \\
+\bottomrule
+\end{tabular}
+\label{tab:rendimiento}
+\end{center}
+\end{table}
+
+\section{Despliegue y Exposición en Gradio}
+Para la interacción de usuario se utilizó la librería \texttt{Gradio}, sirviendo una interfaz conversacional moderna (\texttt{gr.ChatInterface}). El sistema ofrece dos modalidades operativas:
+\begin{enumerate}
+    \item \textbf{Entorno Local:} Servidor HTTP escuchando en el puerto local \texttt{http://localhost:7860}.
+    \item \textbf{Exposición Pública (\texttt{share=True}):} Túnel cifrado temporal generado por los servidores de Gradio (\texttt{https://xxxxx.gradio.live}), lo cual permite validar y probar el agente conversacional desde cualquier navegador o dispositivo móvil sin necesidad de configurar apertura de puertos, VPNs ni túneles manuales de terceros.
+\end{enumerate}
+
+\section{Conclusiones}
+\begin{enumerate}
+    \item La adaptación supervisada de modelos de lenguaje Transformers (\textit{Fine-Tuning}) supera significativamente a los esquemas clásicos de coincidencia superficial, capturando el contexto semántico de preguntas coloquiales y técnicas de los estudiantes.
+    \item La integración del ecosistema PyTorch y Hugging Face en Google Colab facilita un ciclo de desarrollo reproducible y de bajo costo computacional gracias al soporte de GPUs T4.
+    \item Gradio demostró ser una solución óptima y minimalista para la fase de exposición y pruebas interactivas exigidas en la rúbrica del proyecto final, reduciendo la sobrecarga de implementar arquitecturas web complejas.
+\end{enumerate}
+
+\begin{thebibliography}{00}
+\bibitem{vaswani2017} A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser, and I. Polosukhin, ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems (NeurIPS)}, 2017, pp. 5998--6008.
+
+\bibitem{devlin2019} J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, ``BERT: Pre-training of deep bidirectional transformers for language understanding,'' in \textit{Proc. NAACL-HLT}, 2019, pp. 4171--4186.
+
+\bibitem{sanh2019} V. Sanh, L. Debut, J. Chaumond, and T. Wolf, ``DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter,'' \textit{arXiv preprint arXiv:1910.01108}, 2019.
+
+\bibitem{goodfellow2014} I. Goodfellow, J. Pouget-Abadie, M. Mirza, B. Xu, D. Warde-Farley, S. Ozair, A. Courville, and Y. Bengio, ``Generative adversarial nets,'' in \textit{Advances in Neural Information Processing Systems (NeurIPS)}, 2014, pp. 2672--2680.
+
+\bibitem{loshchilov2018decoupled} I. Loshchilov and F. Hutter, ``Decoupled weight decay regularization,'' in \textit{Int. Conf. on Learning Representations (ICLR)}, 2019.
+
+\bibitem{udec2023} Universidad de Cundinamarca, ``Guía Proyecto Final: Creación de un Chatbot,'' \textit{Electiva Profesional II (Deep Learning)}, Seccional Facatativá, 2023.
+\end{thebibliography}
+
+\end{document}
+

@@ -1,0 +1,211 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": [
+        "hola",
+        "buenas",
+        "buenos dias",
+        "buenas tardes",
+        "buenas noches",
+        "que tal",
+        "hola profesor",
+        "hola chatbot",
+        "buen dia",
+        "estas ahi",
+        "inicio"
+      ],
+      "responses": [
+        "¡Hola! Soy el asistente virtual de la Electiva Profesional II (Deep Learning) de la UDEC Facatativá. Puedo responderte sobre el horario de clase (martes 7:00 a 9:00 a.m.), los talleres de Autoencoders y GANs (semanas 13 y 14), o los requisitos y pasos del proyecto final. ¿Qué duda tienes?"
+      ]
+    },
+    {
+      "tag": "despedida",
+      "patterns": [
+        "adios",
+        "chao",
+        "hasta luego",
+        "nos vemos",
+        "nos vemos en clase",
+        "hasta el martes",
+        "listo gracias",
+        "muchas gracias adios"
+      ],
+      "responses": [
+        "¡Hasta pronto! Nos vemos en clase de Deep Learning los martes de 7:00 a 9:00 a.m. Recuerda avanzar en tus talleres e informe IEEE."
+      ]
+    },
+    {
+      "tag": "agradecimiento",
+      "patterns": [
+        "gracias",
+        "muchas gracias",
+        "te lo agradezco",
+        "excelente",
+        "entendido gracias",
+        "perfecto gracias",
+        "vale muchas gracias"
+      ],
+      "responses": [
+        "Con gusto. Pregúntame cualquier otra duda sobre Deep Learning, horarios, talleres o el proyecto final."
+      ]
+    },
+    {
+      "tag": "horario_materia",
+      "patterns": [
+        "que horarios tiene la materia",
+        "cual es el horario de la materia",
+        "que horario tiene la clase",
+        "cual es el horario de deep learning",
+        "a que hora es la clase",
+        "que dias hay clase de deep learning",
+        "cuando es la electiva de deep learning",
+        "cuando hay clase",
+        "a que horas tenemos clase",
+        "cuando nos vemos en clase",
+        "horarios de clase",
+        "que dia es la materia",
+        "que dia y a que hora es la clase",
+        "horario de atencion de la materia"
+      ],
+      "responses": [
+        "El horario de la clase de Electiva Profesional II (Deep Learning) en la UDEC Facatativá es los días martes de 7:00 a.m. a 9:00 a.m."
+      ]
+    },
+    {
+      "tag": "definicion_deep_learning",
+      "patterns": [
+        "que es deep learning",
+        "que significa deep learning",
+        "de que trata la materia",
+        "que es el aprendizaje profundo",
+        "que vemos en la materia de deep learning",
+        "explicame que es deep learning",
+        "temario de la asignatura",
+        "que se aprende en electiva 2"
+      ],
+      "responses": [
+        "Deep Learning (Aprendizaje Profundo) es una rama de la Inteligencia Artificial y Machine Learning basada en redes neuronales profundas que aprenden jerarquías de características automáticamente. En la asignatura se abarcan redes densas, convolucionales (CNN), modelos generativos como Autoencoders (semana 13) y GANs (semana 14), y procesamiento de lenguaje natural con Transformers."
+      ]
+    },
+    {
+      "tag": "taller_semana_13_autoencoders",
+      "patterns": [
+        "de que trata el taller de la semana 13",
+        "taller semana 13",
+        "taller de autoencoders",
+        "que toca hacer en el taller 13",
+        "que es un autoencoder",
+        "como funciona un autoencoder",
+        "como funcionan los autoencoders",
+        "para que sirve un autoencoder",
+        "como funciona el encoder y decoder",
+        "que hace el espacio latente",
+        "arquitectura del autoencoder",
+        "perdida de reconstruccion en autoencoders"
+      ],
+      "responses": [
+        "El taller de la semana 13 trata sobre Autoencoders: arquitecturas no supervisadas compuestas por un Encoder (que comprime la entrada a un vector en el espacio latente de menor dimensión) y un Decoder (que reconstruye la entrada original). Se emplean en compresión de datos y reducción de ruido (denoising), entrenándose con pérdida de error cuadrático medio (MSE)."
+      ]
+    },
+    {
+      "tag": "taller_semana_14_gans",
+      "patterns": [
+        "de que trata el taller de la semana 14",
+        "taller semana 14",
+        "taller de gans",
+        "que toca hacer en el taller 14",
+        "que es una gan",
+        "como funciona una gan",
+        "como funcionan las gans",
+        "redes generativas adversarias",
+        "como funciona el generador y discriminador",
+        "para que sirve una gan",
+        "juego minimax en gans",
+        "equilibrio de nash",
+        "como se entrena una gan"
+      ],
+      "responses": [
+        "El taller de la semana 14 se enfoca en GANs (Redes Generativas Adversarias), basadas en un juego minimax entre dos redes: el Generador (aprende a generar datos sintéticos creíbles a partir de ruido latente z) y el Discriminador (clasifica si los datos son reales o falsos). Se entrenan de forma alternada hasta aproximarse al equilibrio de Nash."
+      ]
+    },
+    {
+      "tag": "diferencia_ae_gan",
+      "patterns": [
+        "cual es la diferencia entre autoencoders y gans",
+        "diferencias entre autoencoders y gans",
+        "autoencoder vs gan",
+        "en que se diferencian ae y gan",
+        "que es mejor autoencoder o gan",
+        "comparar autoencoders con gans"
+      ],
+      "responses": [
+        "Diferencia clave: Los Autoencoders buscan comprimir y reconstruir fielmente los mismos datos de entrada minimizando el error de reconstrucción. Las GANs generan datos completamente nuevos e inéditos a partir de ruido aleatorio mediante la competencia adversaria entre generador y discriminador."
+      ]
+    },
+    {
+      "tag": "que_toca_hacer_proyecto",
+      "patterns": [
+        "pero que toca hacer",
+        "que toca hacer en el proyecto",
+        "que toca hacer",
+        "que hay que hacer en el proyecto",
+        "que se hace en el proyecto",
+        "cuales son los pasos del proyecto",
+        "como se hace el proyecto",
+        "que debo desarrollar",
+        "pasos del proyecto final",
+        "explicame que toca hacer"
+      ],
+      "responses": [
+        "En el proyecto final debes realizar el ciclo completo de Deep Learning: 1) Seleccionar o recolectar el dataset. 2) Preprocesar y tokenizar con Hugging Face (BERT/GPT). 3) Entrenar o afinar (fine-tuning) el modelo Transformer en PyTorch o TensorFlow. 4) Evaluarlo con métricas y gráficas (loss y accuracy con Matplotlib). 5) Construir la interfaz interactiva en Gradio o Flask en Google Colab. 6) Redactar el informe técnico en formato IEEE."
+      ]
+    },
+    {
+      "tag": "descripcion_proyecto",
+      "patterns": [
+        "de que trata el proyecto final",
+        "que es el proyecto final",
+        "en que consiste el proyecto final",
+        "cual es el objetivo del proyecto final",
+        "descripcion del proyecto final"
+      ],
+      "responses": [
+        "El proyecto final consiste en diseñar e implementar un chatbot inteligente con NLP y modelos Transformers (como BERT o GPT), capaz de responder preguntas contextuales en uno de los tres entornos sugeridos: Atención al Cliente, Educación Virtual (como este asistente de Deep Learning) o Soporte Técnico."
+      ]
+    },
+    {
+      "tag": "entregables_proyecto",
+      "patterns": [
+        "cuales son los entregables",
+        "que hay que entregar",
+        "que se entrega",
+        "requisitos de entrega",
+        "hay que entregar informe ieee",
+        "como se entrega el proyecto final"
+      ],
+      "responses": [
+        "Los entregables obligatorios indicados en la guía oficial son: 1) Informe técnico en formato IEEE con todo el desarrollo metodológico y resultados. 2) Código completo y funcional en Python montado en Google Colab con interfaz interactiva (Gradio o Flask)."
+      ]
+    },
+    {
+      "tag": "herramientas_tecnologias",
+      "patterns": [
+        "que herramientas debo usar",
+        "que tecnologias se usan",
+        "librerias de ia sugeridas",
+        "con que librerias se hace",
+        "en que lenguaje se programa",
+        "se puede usar pytorch",
+        "se puede usar gradio"
+      ],
+      "responses": [
+        "Herramientas sugeridas en la guía: Python en Google Colab / Jupyter, PyTorch o TensorFlow, Hugging Face Transformers, NLTK o SpaCy, Pandas, NumPy, Matplotlib para visualización de métricas, y Gradio o Flask para la interfaz web."
+      ]
+    }
+  ],
+  "fallback": [
+    "No logro relacionar tu consulta con la materia. Pregúntame sobre el horario de clase (martes 7-9 am), talleres de semanas 13 y 14 (Autoencoders y GANs), pasos del proyecto final o entregables.",
+    "Pregunta fuera de contexto. Recuerda que puedo responder sobre temas de Deep Learning, Autoencoders, GANs, horarios de la asignatura y requisitos del informe IEEE."
+  ]
+}

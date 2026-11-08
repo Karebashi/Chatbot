@@ -1,0 +1,100 @@
+{
+  "intents": [
+    {
+      "tag": "saludo",
+      "patterns": [
+        "hola",
+        "buenas",
+        "buenos dias",
+        "buenas tardes",
+        "buenas noches",
+        "que tal",
+        "como estas"
+      ],
+      "responses": [
+        "¡Hola! ¿En qué puedo ayudarte hoy?",
+        "Buenas, ¿qué consulta tienes?",
+        "Hola, un gusto saludarte. Dime qué necesitas."
+      ]
+    },
+    {
+      "tag": "despedida",
+      "patterns": [
+        "adios",
+        "chao",
+        "hasta luego",
+        "nos vemos",
+        "bye",
+        "gracias adios"
+      ],
+      "responses": [
+        "¡Hasta pronto! Que tengas buen día.",
+        "Chao, cuídate.",
+        "Un gusto haberte ayudado. ¡Hasta la próxima!"
+      ]
+    },
+    {
+      "tag": "agradecimiento",
+      "patterns": [
+        "gracias",
+        "muchas gracias",
+        "te lo agradezco",
+        "excelente gracias",
+        "mil gracias"
+      ],
+      "responses": [
+        "¡De nada! Aquí estoy si necesitas algo más.",
+        "Con gusto.",
+        "Para servirte."
+      ]
+    },
+    {
+      "tag": "identidad",
+      "patterns": [
+        "quien eres",
+        "que eres",
+        "como te llamas",
+        "cual es tu nombre",
+        "que haces"
+      ],
+      "responses": [
+        "Soy un asistente virtual con NLP para responder preguntas frecuentes.",
+        "Soy tu chatbot asistente, procesando lenguaje natural para resolver dudas."
+      ]
+    },
+    {
+      "tag": "horario",
+      "patterns": [
+        "horario de atencion",
+        "a que hora abren",
+        "cuando atienden",
+        "horarios",
+        "estan abiertos"
+      ],
+      "responses": [
+        "Atendemos de lunes a viernes de 8:00 a.m. a 6:00 p.m.",
+        "Nuestro horario es de lunes a viernes, de 08:00 a 18:00."
+      ]
+    },
+    {
+      "tag": "contacto",
+      "patterns": [
+        "contacto",
+        "numero de telefono",
+        "correo electronico",
+        "donde contactar",
+        "correo",
+        "whatsapp"
+      ],
+      "responses": [
+        "Puedes contactarnos por correo a soporte@ejemplo.com o al WhatsApp +57 300 000 0000.",
+        "Escríbenos a contacto@ejemplo.com para atención directa."
+      ]
+    }
+  ],
+  "fallback": [
+    "No entendí bien tu mensaje. ¿Podrías reformularlo?",
+    "Aún no reconozco esa consulta, ¿puedes decirlo con otras palabras?",
+    "Disculpa, no logré comprender. Intenta consultar sobre horarios, contacto o ayuda general."
+  ]
+}

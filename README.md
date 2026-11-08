@@ -40,3 +40,11 @@ python app.py
 ```
 Abre en tu navegador `http://localhost:7860`.
 Para exponer públicamente desde tu máquina, activa `share=True` en la última línea de `app.py`.
+
+## Temas que puedes consultar
+
+El asistente responde preguntas sobre el horario conocido de la asignatura, los talleres de Autoencoders (semana 13) y GANs (semana 14), redes neuronales, CNN, entrenamiento, sobreajuste, evaluación y orientación del proyecto final. Las fechas de entrega no están configuradas; confirma esos plazos en la guía o el aula virtual.
+
+La interfaz presenta ejemplos de preguntas para iniciar la conversación. Puedes escribir una pregunta en lenguaje natural o seleccionar uno de esos ejemplos.
+
+El archivo `assistant-avatar.svg` contiene el avatar local del asistente, que se muestra en el encabezado y junto a sus respuestas.

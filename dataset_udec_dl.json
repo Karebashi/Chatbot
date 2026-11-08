@@ -13,10 +13,14 @@
         "hola chatbot",
         "buen dia",
         "estas ahi",
-        "inicio"
+        "inicio",
+        "hola necesito ayuda",
+        "buenas me puedes ayudar",
+        "empecemos"
       ],
       "responses": [
-        "¡Hola! Soy el asistente virtual de la Electiva Profesional II (Deep Learning) de la UDEC Facatativá. Puedo responderte sobre el horario de clase (martes 7:00 a 9:00 a.m.), los talleres de Autoencoders y GANs (semanas 13 y 14), o los requisitos y pasos del proyecto final. ¿Qué duda tienes?"
+        "¡Hola! Soy el asistente virtual de la Electiva Profesional II (Deep Learning) de la UDEC Facatativá. Puedo responderte sobre el horario de clase (martes 7:00 a 9:00 a.m.), los talleres de Autoencoders y GANs (semanas 13 y 14), o los requisitos y pasos del proyecto final. ¿Qué duda tienes?",
+        "¡Hola! Puedo ayudarte con conceptos de Deep Learning, los talleres de Autoencoders y GANs, el horario conocido de la asignatura y la orientación del proyecto. ¿Por dónde empezamos?"
       ]
     },
     {
@@ -44,10 +48,13 @@
         "excelente",
         "entendido gracias",
         "perfecto gracias",
-        "vale muchas gracias"
+        "vale muchas gracias",
+        "gracias por la explicacion",
+        "me sirvio la respuesta"
       ],
       "responses": [
-        "Con gusto. Pregúntame cualquier otra duda sobre Deep Learning, horarios, talleres o el proyecto final."
+        "Con gusto. Pregúntame cualquier otra duda sobre Deep Learning, horarios, talleres o el proyecto final.",
+        "¡De nada! Si quieres, también puedo explicarte conceptos como CNN, entrenamiento, sobreajuste o métricas de evaluación."
       ]
     },
     {
@@ -82,7 +89,10 @@
         "que vemos en la materia de deep learning",
         "explicame que es deep learning",
         "temario de la asignatura",
-        "que se aprende en electiva 2"
+        "que se aprende en electiva 2",
+        "para que sirve el aprendizaje profundo",
+        "como aprende una red profunda",
+        "en que se diferencia deep learning de machine learning"
       ],
       "responses": [
         "Deep Learning (Aprendizaje Profundo) es una rama de la Inteligencia Artificial y Machine Learning basada en redes neuronales profundas que aprenden jerarquías de características automáticamente. En la asignatura se abarcan redes densas, convolucionales (CNN), modelos generativos como Autoencoders (semana 13) y GANs (semana 14), y procesamiento de lenguaje natural con Transformers."
@@ -102,7 +112,10 @@
         "como funciona el encoder y decoder",
         "que hace el espacio latente",
         "arquitectura del autoencoder",
-        "perdida de reconstruccion en autoencoders"
+        "perdida de reconstruccion en autoencoders",
+        "que se aprende en la semana 13",
+        "que significa denoising autoencoder",
+        "como se mide la reconstruccion del autoencoder"
       ],
       "responses": [
         "El taller de la semana 13 trata sobre Autoencoders: arquitecturas no supervisadas compuestas por un Encoder (que comprime la entrada a un vector en el espacio latente de menor dimensión) y un Decoder (que reconstruye la entrada original). Se emplean en compresión de datos y reducción de ruido (denoising), entrenándose con pérdida de error cuadrático medio (MSE)."
@@ -123,7 +136,10 @@
         "para que sirve una gan",
         "juego minimax en gans",
         "equilibrio de nash",
-        "como se entrena una gan"
+        "como se entrena una gan",
+        "que se aprende en la semana 14",
+        "que es el ruido latente en una gan",
+        "por que compiten las dos redes de una gan"
       ],
       "responses": [
         "El taller de la semana 14 se enfoca en GANs (Redes Generativas Adversarias), basadas en un juego minimax entre dos redes: el Generador (aprende a generar datos sintéticos creíbles a partir de ruido latente z) y el Discriminador (clasifica si los datos son reales o falsos). Se entrenan de forma alternada hasta aproximarse al equilibrio de Nash."
@@ -197,10 +213,129 @@
         "con que librerias se hace",
         "en que lenguaje se programa",
         "se puede usar pytorch",
-        "se puede usar gradio"
+        "se puede usar gradio",
+        "que es hugging face",
+        "puedo usar tensorflow",
+        "donde puedo ejecutar el proyecto"
       ],
       "responses": [
         "Herramientas sugeridas en la guía: Python en Google Colab / Jupyter, PyTorch o TensorFlow, Hugging Face Transformers, NLTK o SpaCy, Pandas, NumPy, Matplotlib para visualización de métricas, y Gradio o Flask para la interfaz web."
+      ]
+    },
+    {
+      "tag": "redes_neuronales",
+      "patterns": [
+        "que es una red neuronal",
+        "como funciona una red neuronal",
+        "que es una neurona artificial",
+        "que son las capas de una red neuronal",
+        "para que sirven los pesos de una red",
+        "que es una funcion de activacion",
+        "como hace predicciones una red neuronal",
+        "explicame las redes neuronales"
+      ],
+      "responses": [
+        "Una red neuronal artificial está formada por unidades conectadas (neuronas) organizadas en capas. Cada conexión tiene un peso; las capas transforman los datos y las funciones de activación permiten aprender relaciones no lineales. Durante el entrenamiento, los pesos se ajustan para reducir el error de las predicciones.",
+        "En pocas palabras, una red neuronal aprende ajustando sus pesos a partir de ejemplos. La capa de entrada recibe los datos, las capas ocultas extraen representaciones y la capa de salida produce la predicción."
+      ]
+    },
+    {
+      "tag": "redes_convolucionales_cnn",
+      "patterns": [
+        "que es una cnn",
+        "que significa red convolucional",
+        "como funciona una red convolucional",
+        "para que sirve una cnn",
+        "que hacen los filtros convolucionales",
+        "que es pooling en una cnn",
+        "cnn para clasificar imagenes",
+        "diferencia entre red neuronal y cnn"
+      ],
+      "responses": [
+        "Una CNN (red neuronal convolucional) usa filtros que recorren los datos para detectar patrones locales, como bordes y formas en imágenes. Las capas de pooling pueden reducir dimensiones y las capas finales usan las características aprendidas para realizar una tarea, por ejemplo clasificación."
+      ]
+    },
+    {
+      "tag": "entrenamiento_modelo",
+      "patterns": [
+        "que significa entrenar un modelo",
+        "como se entrena una red neuronal",
+        "que es una epoca de entrenamiento",
+        "que significa batch size",
+        "que es la tasa de aprendizaje",
+        "para que sirve la funcion de perdida",
+        "que es descenso por gradiente",
+        "como aprende el modelo con los datos"
+      ],
+      "responses": [
+        "Entrenar es ajustar los parámetros del modelo para que sus predicciones se acerquen a las respuestas esperadas. En cada época, el modelo recorre los datos de entrenamiento; la función de pérdida mide el error y un optimizador, como descenso por gradiente, actualiza los pesos. La tasa de aprendizaje controla el tamaño de esos ajustes."
+      ]
+    },
+    {
+      "tag": "sobreajuste",
+      "patterns": [
+        "que es el sobreajuste",
+        "que significa overfitting",
+        "como saber si mi modelo tiene sobreajuste",
+        "por que el modelo memoriza los datos",
+        "como evitar el overfitting",
+        "diferencia entre sobreajuste y subajuste",
+        "que es regularizacion en deep learning",
+        "para que sirve dropout"
+      ],
+      "responses": [
+        "Hay sobreajuste (overfitting) cuando el modelo aprende demasiado bien los ejemplos de entrenamiento, incluso sus particularidades, y generaliza peor a datos nuevos. Compara el desempeño en entrenamiento y validación; técnicas como regularización, dropout, más datos o detener el entrenamiento a tiempo pueden ayudar."
+      ]
+    },
+    {
+      "tag": "metricas_evaluacion",
+      "patterns": [
+        "como se evalua un modelo de deep learning",
+        "que metricas puedo usar",
+        "que metricas sirven para evaluar un modelo",
+        "que metricas se usan para evaluar mi modelo",
+        "cuales son las metricas para evaluar un modelo",
+        "que es accuracy",
+        "que es precision y recall",
+        "para que sirve la matriz de confusion",
+        "que significa la curva de perdida",
+        "como interpretar el loss y accuracy",
+        "como comparo entrenamiento y validacion"
+      ],
+      "responses": [
+        "La métrica depende de la tarea. En clasificación puedes revisar accuracy, precisión, recall, F1 y matriz de confusión; para observar el aprendizaje, compara las curvas de pérdida y desempeño de entrenamiento y validación. No te quedes con una sola métrica si las clases están desbalanceadas."
+      ]
+    },
+    {
+      "tag": "datos_proyecto",
+      "patterns": [
+        "como elegir un dataset para el proyecto",
+        "como elijo un dataset para mi proyecto",
+        "que datos necesito para entrenar",
+        "como divido los datos de entrenamiento y prueba",
+        "que es un conjunto de validacion",
+        "para que sirve el preprocesamiento de datos",
+        "como preparo los datos para deep learning",
+        "necesito etiquetar los datos",
+        "que es fuga de datos"
+      ],
+      "responses": [
+        "Elige datos relacionados con el problema que quieres resolver y verifica que tengas permiso para usarlos. Limpia y transforma las entradas según la tarea y separa los datos en entrenamiento, validación y prueba. Evita que información del conjunto de prueba influya en el entrenamiento para prevenir fuga de datos."
+      ]
+    },
+    {
+      "tag": "fechas_entrega",
+      "patterns": [
+        "cuando se entrega el proyecto",
+        "cual es la fecha limite",
+        "cuando vence el taller",
+        "que dia hay que entregar",
+        "cual es la fecha de entrega del informe",
+        "hasta cuando puedo entregar",
+        "donde publican las fechas de entrega"
+      ],
+      "responses": [
+        "No tengo una fecha límite confirmada en la información disponible. Revisa la guía o el aula virtual de la asignatura, o confirma la fecha con el docente; prefiero no inventar un plazo."
       ]
     }
   ],
